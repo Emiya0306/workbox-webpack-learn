@@ -3,6 +3,11 @@ const express = require('express');
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.set('Service-Worker-Allowed', '/');
+  next();
+});
+
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, './dist/index.html'));
 });
